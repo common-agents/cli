@@ -1,6 +1,6 @@
 {
   "name": "@commonagents/cli",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Reference implementation of the Common Agent Format: validate CAF agents and install them into coding harnesses.",
   "keywords": [
     "common-agent-format",
