@@ -22,8 +22,13 @@ requireBranch: main
 # Example: Command-based hooks
 before:
   - command: pnpm
-    args:
-      - test
+    args: [ test ]
+
+  - script: |
+      #!/usr/bin/env bash
+      pnpm version --no-git-tag-version "${SINCE_NEW_VERSION}"
+      pnpm install
+      git add package.json pnpm-lock.yaml
 
 # after:
 #   - command: echo
