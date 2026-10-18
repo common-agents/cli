@@ -95,14 +95,6 @@ pnpm run build       # Vite builds dist/cli.js and dist/index.js; tsc writes typ
 pnpm run sync-schema # copies the JSON Schema from common-agents/spec
 ```
 
-### Releasing
-
-Releases are published to npm by GitHub Actions using [trusted publishing](https://docs.npmjs.com/trusted-publishers). Set `version` in `package.json`, commit, then push a matching tag:
-
-```bash
-git tag v0.2.0 && git push origin v0.2.0
-```
-
 ## Licence
 
 [Apache 2.0](LICENSE).
