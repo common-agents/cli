@@ -1,5 +1,7 @@
 # caf
 
+[![CI](https://github.com/common-agents/cli/actions/workflows/ci.yml/badge.svg)](https://github.com/common-agents/cli/actions/workflows/ci.yml) [![npm](https://img.shields.io/npm/v/@commonagents/cli)](https://www.npmjs.com/package/@commonagents/cli)
+
 The reference implementation of the [Common Agent Format](https://commonagents.io). `caf` checks CAF agents against the specification and installs them into coding harnesses as their native agent files.
 
 ```bash
@@ -12,7 +14,7 @@ Or run it without installing:
 npx @commonagents/cli install -t claude-code
 ```
 
-Requires Node.js 22 or later.
+Requires Node.js 22 or later. The package is on [npm](https://www.npmjs.com/package/@commonagents/cli).
 
 ## Quick start
 
