@@ -2,6 +2,7 @@ name: Publish
 
 # Publishes to npm with trusted publishing (OIDC), so no npm token is stored.
 # Runs when a version tag such as v0.2.0 is pushed.
+# Then creates the GitHub release, using the changelog entries for that version.
 on:
   push:
     tags: ['v*']
@@ -34,3 +35,27 @@ jobs:
       # Trusted publishing needs npm 11.5.1 or later.
       - run: npm install -g npm@11
       - run: npm publish
+
+  release:
+    needs: publish
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Extract entries for this version from CHANGELOG.md
+        uses: release-tools/since@v0.21.3
+        with:
+          output-file: release-changes.md
+      - name: Create GitHub release
+        uses: actions/github-script@v9
+        with:
+          script: |
+            const fs = require('fs');
+            await github.rest.repos.createRelease({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              tag_name: context.ref.replace('refs/tags/', ''),
+              name: context.ref.replace('refs/tags/', ''),
+              body: fs.readFileSync('release-changes.md', 'utf8'),
+            });
